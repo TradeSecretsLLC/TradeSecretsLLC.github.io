@@ -44,14 +44,6 @@
       flex-direction: column;
     }
 
-    .page[data-theme="light"] {
-      --bg:         #EBF0F8;
-      --border:     #B8C8DC;
-      --text:       #071428;
-      --muted:      #456080;
-      --accent:     #1450B8;
-      --accent-alt: #5830A8;
-    }
 
     /* ── Ribbon ── */
     .ribbon {
@@ -84,28 +76,6 @@
       position: relative;
     }
 
-    .theme-btn {
-      position: absolute;
-      top: 3.5rem;
-      right: 2rem;
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      cursor: pointer;
-      font-family: var(--ff-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      padding: 0.3rem 0.65rem;
-      border-radius: 2px;
-      transition: color 0.12s, border-color 0.12s;
-    }
-
-    .theme-btn:hover,
-    .theme-btn:focus-visible {
-      color: var(--text);
-      border-color: var(--accent);
-      outline: none;
-    }
 
     /* ── Logo ── */
     .logo-img {
@@ -274,7 +244,6 @@
       width="190"
       height="190"
     >
-    <button class="theme-btn" id="theme-btn" aria-label="Toggle color theme">DARK</button>
   </header>
 
   <main class="site-main">
@@ -333,30 +302,6 @@
 
 </div>
 
-<script>
-  var STORAGE_KEY = 'ts-theme';
-  var page = document.getElementById('page');
-
-  function applyTheme(theme) {
-    if (theme === 'light') {
-      page.setAttribute('data-theme', 'light');
-    } else {
-      page.removeAttribute('data-theme');
-    }
-    var btn = document.getElementById('theme-btn');
-    if (btn) btn.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
-  }
-
-  function toggleTheme() {
-    var cur = page.hasAttribute('data-theme') ? 'light' : 'dark';
-    var next = cur === 'dark' ? 'light' : 'dark';
-    localStorage.setItem(STORAGE_KEY, next);
-    applyTheme(next);
-  }
-
-  applyTheme(localStorage.getItem(STORAGE_KEY) || 'dark');
-  document.getElementById('theme-btn').addEventListener('click', toggleTheme);
-</script>
 
 </body>
 </html>
