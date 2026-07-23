@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trade Secrets LLC is a proprietary trading technology company that develops and operates an automated algorithmic trading platform focused on U.S. equity options markets.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Trade Secrets LLC">
+  <meta property="og:description" content="Proprietary trading technology. Data. Strategy. Discipline. Results.">
+  <meta property="og:image" content="assets/logo.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <title>Trade Secrets LLC</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
+    .page {
+      --bg:         #060A12;
+      --border:     #172236;
+      --text:       #C8D6E8;
+      --muted:      #4D6B8A;
+      --accent:     #2B7BFF;
+      --accent-alt: #7048D0;
+
+      --ff-display: 'Gill Sans', 'Gill Sans MT', Optima, Candara, 'Century Gothic', sans-serif;
+      --ff-body:    system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --ff-mono:    'SF Mono', 'Cascadia Code', Consolas, 'Courier New', monospace;
+
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page[data-theme="light"] {
+      --bg:         #EBF0F8;
+      --border:     #B8C8DC;
+      --text:       #071428;
+      --muted:      #456080;
+      --accent:     #1450B8;
+      --accent-alt: #5830A8;
+    }
+
+    /* ── Ribbon ── */
+    .ribbon {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-alt) 100%);
+      z-index: 100;
+    }
+
+    /* ── Layout shell ── */
+    .site-header,
+    .site-main,
+    .site-footer {
+      width: 100%;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      padding-top: 3.5rem;
+      padding-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .theme-btn {
+      position: absolute;
+      top: 3.5rem;
+      right: 2rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.65rem;
+      border-radius: 2px;
+      transition: color 0.12s, border-color 0.12s;
+    }
+
+    .theme-btn:hover,
+    .theme-btn:focus-visible {
+      color: var(--text);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    /* ── Logo ── */
+    .logo-img {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      display: block;
+      box-shadow:
+        0 0 28px rgba(43, 123, 255, 0.28),
+        0 0 64px rgba(112, 72, 208, 0.14);
+    }
+
+    /* ── Main ── */
+    .site-main { flex: 1; }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: 2.75rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .hero-name {
+      font-family: var(--ff-display);
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      color: var(--text);
+      text-wrap: balance;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      font-family: var(--ff-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding-top: 3.75rem;
+      padding-bottom: 3.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .eyebrow {
+      display: block;
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+
+    .section-body { max-width: 65ch; }
+    .section-body p + p { margin-top: 1.1rem; }
+
+    /* ── Pillars ── */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pillar {
+      border-top: 2px solid var(--accent);
+      padding-top: 1rem;
+    }
+
+    .pillar-label {
+      display: block;
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .pillar-text {
+      font-size: 0.825rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* ── Leadership ── */
+    .bio-name {
+      font-family: var(--ff-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .bio-role {
+      display: block;
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      padding-top: 1.75rem;
+      padding-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-family: var(--ff-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-copy { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 580px) {
+      .theme-btn { top: 2.5rem; }
+      .pillars {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page" id="page">
+
+  <div class="ribbon" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <img
+      src="assets/logo.png"
+      alt="Trade Secrets LLC"
+      class="logo-img"
+      width="190"
+      height="190"
+    >
+    <button class="theme-btn" id="theme-btn" aria-label="Toggle color theme">DARK</button>
+  </header>
+
+  <main class="site-main">
+
+    <div class="hero">
+      <h1 class="hero-name">Trade Secrets LLC</h1>
+      <p class="hero-tagline">Data · Strategy · Discipline · Results</p>
+    </div>
+
+    <section class="section" aria-labelledby="about-heading">
+      <span class="eyebrow" id="about-heading">About</span>
+      <div class="section-body">
+        <p>Trade Secrets LLC is a proprietary trading technology company that develops and operates an automated algorithmic trading platform focused on U.S. equity options markets.</p>
+        <p>The company's platform is built entirely from internally developed software and runs fully autonomously during market hours — ingesting and analyzing real-time market data, identifying validated trade signals, and executing options strategies across multiple account types without manual intervention. A streaming position-monitoring layer manages each trade from entry through exit, applying automated risk controls at every stage.</p>
+        <p>Research and development are central to how Trade Secrets LLC operates. Every strategy undergoes validation through a proprietary tick-by-tick backtesting engine that replays historical market microstructure to stress-test entries, exits, and sizing models under realistic execution conditions. No strategy is deployed to live capital until it has demonstrated statistical viability at that level of precision. Once live, strategy performance is monitored continuously and refined as market conditions evolve.</p>
+        <p>Risk management is embedded throughout the platform — position sizing is governed by quantitative models calibrated to historical win rates and expected value, and automated safeguards enforce position limits, prevent duplicate entries, and monitor for adverse conditions in real time.</p>
+      </div>
+    </section>
+
+    <div class="pillars" role="list" aria-label="Company principles">
+      <div class="pillar" role="listitem">
+        <span class="pillar-label">Data</span>
+        <p class="pillar-text">Decisions grounded in real-time and historical market data, analyzed at tick-level precision.</p>
+      </div>
+      <div class="pillar" role="listitem">
+        <span class="pillar-label">Strategy</span>
+        <p class="pillar-text">Proprietary algorithms validated against historical market microstructure before any capital is deployed.</p>
+      </div>
+      <div class="pillar" role="listitem">
+        <span class="pillar-label">Discipline</span>
+        <p class="pillar-text">Automated execution enforces every rule consistently — no manual override, no deviation.</p>
+      </div>
+      <div class="pillar" role="listitem">
+        <span class="pillar-label">Results</span>
+        <p class="pillar-text">Performance is measured, reviewed, and used to refine the platform on a continuous basis.</p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="leadership-heading">
+      <span class="eyebrow" id="leadership-heading">Leadership</span>
+      <p class="bio-name">Hannah Barnette</p>
+      <span class="bio-role">Founder &amp; Chief Executive Officer</span>
+      <div class="section-body">
+        <p>Hannah Barnette is the Founder and Chief Executive Officer of Trade Secrets LLC, a proprietary trading technology company they built from the ground up. With a foundation rooted in software engineering, quantitative research, and financial markets, Hannah designed and developed every component of the company's automated trading platform — from the real-time data ingestion engine and options analysis layer to the execution system and position-monitoring infrastructure that manages trades autonomously from entry through exit.</p>
+        <p>Before launching Trade Secrets LLC, Hannah identified a gap between the disciplined, data-driven trading methods used by institutional firms and what was accessible at the individual level. In response, they set out to build a professional-grade algorithmic trading platform independently — one governed by the same principles of rigorous research, systematic risk management, and repeatable process that define institutional operations.</p>
+        <p>Today, Hannah oversees all aspects of the business: platform development, strategy research, system operations, and risk oversight. They maintain a continuous R&amp;D pipeline, using a proprietary tick-by-tick backtesting framework to validate every strategy and parameter change against historical market conditions before any live capital is deployed.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-brand">Trade Secrets LLC</span>
+    <span class="footer-copy">&copy; 2025 Trade Secrets LLC. All rights reserved.</span>
+  </footer>
+
+</div>
+
+<script>
+  var STORAGE_KEY = 'ts-theme';
+  var page = document.getElementById('page');
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      page.setAttribute('data-theme', 'light');
+    } else {
+      page.removeAttribute('data-theme');
+    }
+    var btn = document.getElementById('theme-btn');
+    if (btn) btn.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
+  }
+
+  function toggleTheme() {
+    var cur = page.hasAttribute('data-theme') ? 'light' : 'dark';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(STORAGE_KEY, next);
+    applyTheme(next);
+  }
+
+  applyTheme(localStorage.getItem(STORAGE_KEY) || 'dark');
+  document.getElementById('theme-btn').addEventListener('click', toggleTheme);
+</script>
+
+</body>
+</html>
