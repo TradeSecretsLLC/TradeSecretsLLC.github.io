@@ -125,7 +125,7 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .section:last-child { border-bottom: none; }
+    .section:last-of-type { border-bottom: none; }
 
     .eyebrow {
       display: block;
@@ -193,6 +193,24 @@
       margin-bottom: 1.5rem;
     }
 
+    /* ── Wordmark ── */
+    .wordmark {
+      display: flex;
+      justify-content: center;
+      padding-top: 3.25rem;
+      padding-bottom: 3.25rem;
+    }
+
+    .wordmark-img {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      /* the artwork carries a solid black backing; screen blending
+         drops it into the page background instead of showing a box */
+      mix-blend-mode: screen;
+    }
+
     /* ── Footer ── */
     .site-footer {
       padding-top: 1.75rem;
@@ -202,14 +220,6 @@
       justify-content: space-between;
       gap: 1rem;
       border-top: 1px solid var(--border);
-    }
-
-    .footer-brand {
-      font-family: var(--ff-display);
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
     }
 
     .footer-copy { font-size: 0.8rem; color: var(--muted); }
@@ -294,10 +304,20 @@
       </div>
     </section>
 
+    <div class="wordmark">
+      <img
+        src="assets/logo-horizontal.png"
+        alt="Trade Secrets Technologies LLC"
+        class="wordmark-img"
+        width="800"
+        height="350"
+        loading="lazy"
+      >
+    </div>
+
   </main>
 
   <footer class="site-footer">
-    <span class="footer-brand">Trade Secrets Technologies LLC</span>
     <span class="footer-copy">&copy; 2026 Trade Secrets Technologies LLC. All rights reserved.</span>
   </footer>
 
